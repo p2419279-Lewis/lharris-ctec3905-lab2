@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<title>p2419279 File Directory - Github Pages</title>
+<style>
+body {margin:0px;font-family:Arial}
+.center {width:70%;min-width:500px;margin:auto;margin-top:50px;}
+nav.ribbon {height:72px;width:100%;background:#fff;border-bottom:1px solid #ccc}
+nav.ribbon li {background:#fff;display:inline;float:left;
+	text-decoration:none;padding:12px;margin:12px;border:1px solid #444;
+	border-radius:3px;transition:all 0.1s}
+nav.ribbon li:hover {background:#000;}
+nav.ribbon a {color:#000}
+nav.ribbon a:hover {color:#fff}
+.right {float:right;}
+.hr {width:100%;border-top:1px solid #aaa;margin:50px auto;min-width:400px;}
+.footer {color:#666;font-size:12px;text-align:center;margin:50px 0px 5px 0px}
+
+sup a {text-decoration:none;font-size:10px;padding:0px 2px}
+
+.tooltip {display:block;position:absolute;width:240px;padding:5px 10px;background:#fff;border:1px solid #888;border-radius:2px;font-size:12px;}
+.tooltip span {z-index:500}
+.tooltipTail {transform:rotate(-45deg);display:block;position:absolute;width:10px;height:10px;background:#fff;border-left:1px solid #888;border-bottom:1px solid #888;z-index:10;}
+
+pre.code:before {counter-reset:listing;}
+pre.code code {counter-increment:listing;white-space:pre-wrap;}
+pre.code {background:#333;padding:5px 15px;color:#fff;font-weight:bold}
+pre.code code::before {content:counter(listing)".  ";display:inline-block;}
+.output {background:#fff!important;border:1px solid #000;color:#000!important}
+</style>
+</head>
+<body>
+<nav class="ribbon">
+	<a href="index.html"><li>Back to Index</li></a>
+</nav>
+<div class="center">
+
+	<h1>Batch for Windows</h1>
+	<h2>What is batch? What problems does it solve?</h2>
+	<p>Windows batch files, known synonymously as "batch" or "bat files", are script files that run in the Windows command-prompt (CMD) window, either through the command-line interface, or the explorer Window. Linux users will likely be familiar with the similar <i>bash</i> scripts - one of the most widely used OS level scripting languages, and likely one of the first things that Linux users learn how to use. For Windows users, however, such scripting environments are rarely used.<br><br>
+	
+	Batch scripts allow for quick prototyping of cmd functionality without having to produce an executable. Scripts can do any function that is available within the Windows command-line (which obviously extends to any software that can be downloaded and used within that environment), but for some functionality, and better usability, a GUI interface may be better suited, however in most cases of file or filesystem manipulation where a GUI is not necessary, and where the user needs to apply a function over a wide range of inputs, or produce a large range of outputs, or just produce similar outputs with a specific task, batch scripts can be used.</p>
+	
+	<div class="hr"></div>
+	
+	<h1>Vanilla Batch usage and examples</h1>
+	<h2>Basic Stuff</h2>
+	<h3>Echo output</h3>
+	<p>Echo allows you to print the succeeding string:</p>
+	<pre class="code"><code>echo hello world!</code></pre>
+	<p>Output:</p>
+	<pre class="code output"><code>hello world!</code></pre>
+	<p>You can also echo to a txt file (will be created if it doesn't exist):</p>
+	<pre class="code"><code>echo hello world!>hello.txt</code></pre>
+	<p>Output "hello.txt":</p>
+	<pre class="code output"><code>hello world!</code></pre>
+
+	<h3>@ECHO</h3>
+	<p>The "@" sign forces the succeeding function to not be echo'd, and the "echo off" will disable the echo command by setting the dafault echo behaviour for the entire batch file (so must be set at the top).</p>
+	<pre class="code"><code>@echo off</code>
+<code>echo hello world!</code></pre>
+	<p>Output:</p>
+	<pre class="code output"><code>hello world!</code></pre>
+	<p>While...</p>
+	<pre class="code"><code>echo hello world!</code></pre>
+	<p>CMD Output:</p>
+	<pre class="code output"><code>C:>echo hello world!</code>
+<code>hello world!</code></pre>
+	<p>The actual CMD output, without "@echo off", will also render/print the batch functions.</p>
+	<h3>Drag + Drop files as arguments</h3>
+	<p>Files can be drag + dropped onto a bat file in the Windows explorer - a faster way to add the file as an argument in the bat script.</p>
+	<img src="https://i.imgur.com/nPQADPj.png">
+	<p>To use the drag + dropped file in the script, you use the same syntax as an argument. "%1" will be the first argument, the number can be changed include any amount of arguments. "%~1" will produce an output without quotes if there is any spaces, useful for when you use the input inside of a quote, e.g. "%~1" can use an input with a space, compared to "%1" which will output ""file"" when a space is present.</p>
+	<pre class="code"><code>echo %~1</code></pre>
+	<p>Output:</p>
+	<pre class="code output"><code>C:\file.txt</code></pre>
+	<p>Furthermore, using different notation with this variable will allow you to use more concise arguments in your script, for example "%~n1" will only produce the filename without the location and filename:</p>
+	<pre class="code"><code>echo %~n1</code></pre>
+	<p>Output:</p>
+	<pre class="code output"><code>file</code></pre>
+	
+	<div class="footer">Copyright Lewis Harris 2021</div>
+	
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

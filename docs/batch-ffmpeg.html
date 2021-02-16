@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<title>p2419279 File Directory - Github Pages</title>
+<style>
+body {margin:0px;font-family:Arial}
+.center {width:70%;min-width:500px;margin:auto;margin-top:50px;}
+nav.ribbon {height:72px;width:100%;background:#fff;border-bottom:1px solid #ccc}
+nav.ribbon li {background:#fff;display:inline;float:left;
+	text-decoration:none;padding:12px;margin:12px;border:1px solid #444;
+	border-radius:3px;transition:all 0.1s}
+nav.ribbon li:hover {background:#000;}
+nav.ribbon a {color:#000}
+nav.ribbon a:hover {color:#fff}
+.right {float:right;}
+.hr {width:100%;border-top:1px solid #aaa;margin:50px auto;min-width:400px;}
+.footer {color:#666;font-size:12px;text-align:center;margin:50px 0px 5px 0px}
+
+sup a {text-decoration:none;font-size:10px;padding:0px 2px}
+
+.tooltip {display:block;position:absolute;width:240px;padding:5px 10px;background:#fff;border:1px solid #888;border-radius:2px;font-size:12px;}
+.tooltip span {z-index:500}
+.tooltipTail {transform:rotate(-45deg);display:block;position:absolute;width:10px;height:10px;background:#fff;border-left:1px solid #888;border-bottom:1px solid #888;z-index:10;}
+
+pre.code:before {counter-reset:listing;}
+pre.code code {counter-increment:listing;white-space:pre-wrap;}
+pre.code {background:#333;padding:5px 15px;color:#fff;font-weight:bold}
+pre.code code::before {content:counter(listing)".  ";display:inline-block;}
+.output {background:#fff!important;border:1px solid #000;color:#000!important}
+</style>
+</head>
+<body>
+<nav class="ribbon">
+	<a href="index.html"><li>Back to Index</li></a>
+</nav>
+<div class="center">
+
+	<h1>Windows .bat FFmpeg implementation</h1>
+	<p>What is batch? <a href="batch.html">Check out my other introduction here</a>.</p>
+	<h2>What is FFmpeg?</h2>
+	<p><a href="https://en.wikipedia.org/wiki/FFmpeg">FFmpeg</a> is a free and open-source command line software for multimedia editing and manipulation.</p>
+	
+	<div class="hr"></div>
+	
+	<h1>Scripts</h1>
+	<h3>Combine image and audio into video</h3>
+	<p>Copies the audio codec and loops the image over the audio for the length of the audio. Uses libx264, tuned to the still image, and the nv12 pixel format.</p>
+	<pre class="code"><code>@echo off</code>
+<code>ffmpeg -loop 1 -i "%~1" -i "%~2" -c:v libx264 -tune stillimage -c:a copy -pix_fmt nv12 -shortest "%~n1.video.mp4"</code></pre>
+
+	<h3>Explode video into seperate segments</h3>
+	<p>Segments the video into seperate video files with a specific length specified by "segment_time".</p>
+	<pre class="code"><code>@echo off</code>
+<code>ffmpeg -i "%~1" -c copy -map 0 -segment_time 00:00:56 -reset_timestamps 1 -f segment "%%02d.mp4"</code></pre>
+	<p>Output files:</p>
+	<pre class="code output"><code>01.mp4</code>
+<code>02.mp4</code>
+<code>03.mp4</code></pre>
+	<p>Or, change the script to this one to push the FFmpeg video outputs to a folder with the same name as the input file:</p>
+	<pre class="code"><code>@ECHO OFF</code>
+<code>if not exist "%CD%\%~n1" mkdir "%CD%\%~n1"</code>
+<code>ffmpeg -i "%~1" -c copy -map 0 -segment_time 00:00:56 -reset_timestamps 1 -f segment "%~n1\%%02d.mp4"</code></pre>
+	
+	<h3>Crop</h3>
+	<p>Outputs a cropped video.</p>
+	<pre class="code"><code>@echo off</code>
+<code>ffmpeg -i "%~1" -c:a copy -vf "crop=ih/3*4:ih" "%~n1_cropped.mp4"</code></pre>
+	
+	<h3>Strict/static crop</h3>
+	<p>Output a cropped video. <b>WARNING:</b> This is strictly for cropping a 1920x1080 to 1080x1080 (1:1) for album artwork/instagram cropped videos, with an x offset of 420 to center the video.</p>
+	<pre class="code"><code>@echo off</code>
+<code>ffmpeg -i "%~1" -c:a copy -vf "crop=1080:1080:420:0" "%~n1_cropped.mp4"</code></pre>
+	
+	<h3>Reduce framerate</h3>
+	<p>Restrict the video framerate, by default 1fps.</p>
+	<pre class="code"><code>@echo off</code>
+<code>ffmpeg -i "%~1" -filter:v fps=1 "%~n1_1fps.mp4"</code></pre>
+	
+	<h3>Set video start time</h3>
+	<p>Sets the start time of a video, will ask the user for the time with the set /p function to be parsed to the "-ss" FFmpeg argument. Note: Has to be re-encoded, even if the output codecs are the same as the inputs, to avoid start-time corruption issues I have run into previously.</p>
+	<pre class="code"><code>@echo off</code>
+<code>set /p starttime="Start time (hh:mm:ss.ms): "</code>
+<code>ffmpeg -i "%~1" -ss %starttime% -c:a libfdk_aac -c:v libx264 "%~n1_delayed.mp4"</code></pre>
+
+	<div class="footer">Copyright Lewis Harris 2021</div>
+	
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
