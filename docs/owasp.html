@@ -33,6 +33,15 @@
 		<li><b>Inner html</b> elements include the <b>a</b> tag, for clicking through to the link (unfortunately including the a and url links is necessary in the current format, although I suppose the javascript could be changed to retrieve the URL from the innerHTML a tag?), and the value.</li>
 	</ul>
 	
+	<h3>The mouseout action</h3>
+	<p>When making this component I realised that a basic implementation of the js "mouseout" listener wouldn't work very well - When the <b>sup</b> element is "mouseout"-ed, when the user goes to click the link in the tooltip, it shouldn't make the tooltip disappear, which is what happened. To avoid this I tried making the mouseout only occur when the cursor was outside both the sup and tooltip, a few problems occured, 1: the small gap in-between the sup and tooltip (especially the tooltip-tail) caused there to be spots where the cursor wasn't on any elements and the tooltip would disappear, 2: the sup element is so small that it is hard to precisely move the mouse up vertically without accidentally moving it off the element horizontally, causing the tooltip to vanish, and 3: I found that even with these other 2 things fixed, the tooltip itself is so small (by design, non-intrusive) that the user (me) would move the mouse off of the tooltip anyway, which is the natural instinct when you have a cursor blocking the text you're trying to read.
+	<br><br>
+	The last point is most crucial - I figured that this was the best reason to approach a total re-write. Other websites make the tooltip disappear only when the mouse is outside a certain distance, because this indicated that the user no longer needs to tooltip... I just stole that design. I tried making an invisible container div that would have the mouseout event attached, but this was also impossible because I needed it to have a higher z-index (and effectively be in-front off) all the other elements of the tooltip so that the mouseover and mouseout events worked properly, but this meant that the a links couldn't be clicked on, and changing the css to include a click-thru (no pointer events) on that element, it also disabled the mouseover events. So I changed strategy again...
+	<br><br>
+	I figured a javascript mouse x+y implementation might be appropriate, as I was using js anyway it wouldn't create browser issues (but still - device issues). So, the "start" value is set as wherever the mouse is when the function is triggered - onmouseover the sup a link. Then the position is periodically tracked on movement until the mouse goes a certain distance from the "start" value, indicating the user moved the mouse away, creating a safe-area when the mouse can sit. No cross-element events, no outer container or z-index faff, just easy javascript.
+	<br><br>
+	Where to go from here? Fade out (progressive as the mouse gets further away),  thinking about how close together these links will be on a page, so 2 can't be simultaneously used, device implementation (just use something else, seriously this is just stupid for mobile devices)...</p>	
+	
 	<div class="footer">
 		Copyright Lewis Harris 2021
 	</div>
