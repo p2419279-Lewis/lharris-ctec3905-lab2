@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<title>Timeline - Github Pages</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/timeline.css">
+</head>
+<body>
+<nav class="ribbon">
+	<a href="index.html"><li>Back to Index</li></a>
+</nav>
+<div class="center">
+
+<h1>Vertical CSS timeline</h1>
+
+<h2>Demo:</h2>
+<div class="timelineContainer">
+	<div class="lineContainer">
+		<div class="topCircle"></div>
+		<div class="timeline"></div>
+		<div class="bottomCircle"></div>
+	</div>
+	<div class="textContainer">
+		<div class="textbox">
+			<p><span class="header">13.8 Billion BC</span>Hello Universe!</p>
+		</div>
+		<div class="textbox">
+			<p><span class="header">4.543 Billion BC</span>Hello World!</p>
+		</div>
+		<div class="textbox">
+			<p><span class="header">2021</span>Here we are making vertical timelines in CSS</p>
+		</div>
+	</div>
+</div>
+
+<h3>Quick overview</h3>
+<p>No JS and very primitive use of flex-box containers for page spacing. Some CSS calc() was used, which was previously discouraged ~2019ish but is becoming more accepted as most major browsers and devices use it.</p>
+
+<h3>HTML:</h3>
+<xmp class="basicCode"><div class="timelineContainer">
+	<div class="lineContainer">
+		<div class="topCircle"></div>
+		<div class="timeline"></div>
+		<div class="bottomCircle"></div>
+	</div>
+	<div class="textContainer">
+		<div class="textbox">
+			<p>
+				<span class="header">13.8 Billion BC</span>
+				Hello Universe!
+			</p>
+		</div>
+	</div>
+</div></xmp>
+
+<p>As you can see - not very interesting... the whole thing is in its own container, split horizontally via flex by lineContainer and textContainer:</p>
+
+<h3>Layout CSS:</h3>
+<xmp class="basicCode">.timelineContainer {padding:25px 0px;display:flex;flex-wrap:nowrap;background-color:#fff}
+.lineContainer {width:100px}
+.textContainer {width:calc(100%-100px)}</xmp>
+
+<p>Note that .textContainer uses calc(), which takes 100% usable width, minus the width of the .lineContainer - which is hardcoded rather than rem, em, % or any other variable measurements because it doesn't need to grow or shrink with the page (it would mostly be whitespace anyway).</p>
+
+<h3>Line CSS:</h3>
+<xmp class="basicCode">.topCircle {height:15px;width:15px;background:#111;margin:auto;border-radius:15px 15px 0px 0px}
+.bottomCircle {height:15px;width:15px;background:#111;margin:auto;border-radius:0px 0px 15px 15px}
+.timeline {height:calc(100% - 30px);width:5px;background:#111;margin:auto;}</xmp>
+
+<p>There's a million ways to do a line with 2 end points, so quickly: Top and bottom ends are just boxes with border-radius applied to top and bottom, the middle part is just a skinny rectangle with a calc() height, 100% minus height of box end-point boxes, all with margin: auto to center.</p>
+
+<h3>Textbox + header CSS:</h3>
+<xmp class="basicCode">.textbox {width:100%}
+.textbox p {min-height:45px;margin:0px;margin-top:18px;position:relative;left:-35px;font-size:16px;}
+.textbox p .header {font-weight:bold;font-size:24px;margin-right:10px;}</xmp>
+
+<p>Lastly, the actual content! The .textbox class is just an outer wrapper to contain the header (year/date, or whatever you want it to be) and the content. Min-height needs to be set on the paragraph element, or else it will be tiny-height because the position of the p is relative so it can be moved -35px (overlapping the timeline div and going outside of its flexbox). Another note: To avoid the small space after the span just remove the newline.</p>
+
+<p>That's basically it. Nothing fancy and shouldn't be too hard to copy and use in larger projects, using twig to loop through and output a PHP array fetched from a database should be easy!</p>
+
+<div class="footer">
+	Copyright Lewis Harris 2021
+</div>
+</div>
+<script src="script/wiki-tooltip.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

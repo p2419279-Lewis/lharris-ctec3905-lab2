@@ -1,0 +1,12 @@
+.timelineContainer {padding:25px 0px;display:flex;flex-wrap:nowrap;background-color:#fff}
+.lineContainer {width:100px}
+.textContainer {width:calc(100%-100px)}
+
+.topCircle {height:15px;width:15px;background:#111;margin:auto;border-radius:15px 15px 0px 0px}
+.bottomCircle {height:15px;width:15px;background:#111;margin:auto;border-radius:0px 0px 15px 15px}
+.timeline {height:calc(100% - 30px);width:5px;background:#111;margin:auto;}
+
+
+.textbox {width:100%}
+.textbox p {min-height:45px;margin:0px;margin-top:18px;position:relative;left:-35px;font-size:16px;}
+.textbox p .header {font-weight:bold;font-size:24px;margin-right:10px;}

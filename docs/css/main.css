@@ -1,0 +1,32 @@
+body {margin:0px;font-family:Arial;background:#eee}
+.center {overflow:auto;background:#fff;padding:25px;box-sizing:border-box;min-width:600px;max-width:1080px;margin:auto}
+
+nav.ribbon {height:72px;width:100%;background:#fff;border-bottom:1px solid #ccc}
+nav.ribbon li {background:#fff;display:inline;float:left;
+	text-decoration:none;padding:12px;margin:12px;border:1px solid #444;
+	border-radius:3px;transition:all 0.1s}
+nav.ribbon li:hover {background:#000;}
+nav.ribbon a {color:#000}
+nav.ribbon a:hover {color:#fff}
+.right {float:right;}
+.hr {width:100%;border-top:1px solid #aaa;margin:50px auto;min-width:400px;}
+.footer {color:#666;font-size:12px;text-align:center;margin:50px 0px 5px 0px}
+
+.linkList li {margin-top:5px;}
+xmp.basicCode {background:#444;font-weight:bold;color:#fff;padding:5px 10px;white-space:pre-wrap;border-radius:4px;border:1px solid #2d2d2d;box-sizing:border-box}
+
+sup a {text-decoration:none;font-size:10px;padding:0px 2px}
+
+.tooltip {display:block;position:absolute;width:240px;padding:5px 10px;background:#fff;border:1px solid #888;border-radius:2px;font-size:12px;}
+.tooltip span {z-index:500}
+.tooltipTail {transform:rotate(-45deg);display:block;position:absolute;width:10px;height:10px;background:#fff;border-left:1px solid #888;border-bottom:1px solid #888;z-index:10;}
+
+pre.code:before {counter-reset:listing;}
+pre.code code {counter-increment:listing;white-space:pre-wrap;}
+pre.code {background:#333;padding:5px 15px;color:#fff;font-weight:bold}
+pre.code code::before {content:counter(listing)".  ";display:inline-block;}
+.output {background:#fff!important;border:1px solid #000;color:#000!important}
+
+xmp.code {background:#333;padding:5px 15px;color:#fff;font-weight:bold;white-space:pre-wrap;}
+
+ul.wikipedia-overview-list li {padding-bottom:15px;}

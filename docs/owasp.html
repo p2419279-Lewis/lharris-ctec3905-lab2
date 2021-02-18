@@ -4,26 +4,7 @@
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>p2419279 Tooltip</title>
-<style>
-body {margin:0px;font-family:Arial}
-.center {width:70%;min-width:500px;margin:auto;margin-top:50px;}
-nav.ribbon {height:72px;width:100%;background:#fff;border-bottom:1px solid #ccc}
-nav.ribbon li {background:#fff;display:inline;float:left;
-	text-decoration:none;padding:12px;margin:12px;border:1px solid #444;
-	border-radius:3px;transition:all 0.1s}
-nav.ribbon li:hover {background:#000;}
-nav.ribbon a {color:#000}
-nav.ribbon a:hover {color:#fff}
-.right {float:right;}
-.hr {width:100%;border-top:1px solid #aaa;margin:50px auto;min-width:400px;}
-.footer {color:#666;font-size:12px;text-align:center;margin:50px 0px 5px 0px}
-
-sup a {text-decoration:none;font-size:10px;padding:0px 2px}
-
-.tooltip {display:block;position:absolute;width:240px;padding:5px 10px;background:#fff;border:1px solid #888;border-radius:2px;font-size:12px;}
-.tooltip span {z-index:500}
-.tooltipTail {transform:rotate(-45deg);display:block;position:absolute;width:10px;height:10px;background:#fff;border-left:1px solid #888;border-bottom:1px solid #888;z-index:10;}
-</style>
+<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <nav class="ribbon">
@@ -36,39 +17,28 @@ sup a {text-decoration:none;font-size:10px;padding:0px 2px}
   <div class="hr"></div>
 	<h2>A1:2017 Injection</h2>
 	<p>Injection attacks are defined by OWASP as hostile data sent to an interpreter<sup class="reference" alt='[2] OWASP Foundation, Inc. (2021) "A1:2017-Injection"' url="https://owasp.org/www-project-top-ten/2017/A1_2017-Injection"><a href="https://owasp.org/www-project-top-ten/2017/A1_2017-Injection">[2]</a></sup>.</p>
+	
+	<div class="hr"></div>
+	
+	<h2>Including the tooltip</h2>
+	<p>HTML code looks like this:</p>
+	<xmp class="code"><sup class='reference' alt='[1] Reference, Inc. (2021) "Title"' url='http://reference.com/id'><a href='http://reference.com/id'>[1]</a></sup></xmp>
+	<p>and will produce<sup class='reference' alt='[1] Reference, Inc. (2021) "Title"' url='http://reference.com/id'><a href='http://reference.com/id'>[1]</a></sup> in Harvard referencing/wikipedia style.</p>
+	<h3>Overview and explanation:</h3>
+	<ul class="wikipedia-overview-list">
+		<li>The <b>sup</b> tag is for <i>super</i> text. It procudes a smaller font size and lifts the line-position/height specifically for references.</li>
+		<li>Class <b>reference</b> is not used by CSS, but jQuery as a selector of the element. A listener is applied and fires a function when the mouse is hovered.</li>
+		<li>The <b>alt</b> attribute the hover text, describing what the link is. Normally this is used by images but can be used to define any alternate information about the item.</li>
+		<li>The <b>url</b> attribute is the external URL to be shown in the tooltip.</li>
+		<li><b>Inner html</b> elements include the <b>a</b> tag, for clicking through to the link (unfortunately including the a and url links is necessary in the current format, although I suppose the javascript could be changed to retrieve the URL from the innerHTML a tag?), and the value.</li>
+	</ul>
+	
 	<div class="footer">
 		Copyright Lewis Harris 2021
 	</div>
 </div>
+<script src="script/wiki-tooltip.js"></script>
 </body>
-
-<script>
-var exists = false;
-$('.reference').on('mouseover', function() {
-	if (exists == false) {
-		var tooltip = "<div class='tooltip'><span>" + this.attributes.alt.value + " <a href='"+ this.attributes.url.value +"' target='_blank'>"+ this.attributes.url.value +" <img src='img/Icon_External_Link.png'></a></span></div><div class='tooltipTail'> </div>";
-		$('body').prepend(tooltip);
-		$('.tooltip').css('top', Math.floor($(this).position().top) - 4 - $('.tooltip').outerHeight());
-		$('.tooltip').css('left', Math.floor($(this).position().left) - 10);
-		
-		$('.tooltipTail').css('top', Math.floor($(this).position().top) - 9);
-		$('.tooltipTail').css('left', Math.floor($(this).position().left) + 2);
-		exists = true;
-	};
-	$('body').on('mousemove', function(event) {
-		if (exists==true) {
-			var mouseX = event.pageX; mouseY = event.pageY;
-			if (mouseX > $('.tooltip').position().left + 320 || mouseX < $('.tooltip').position().left - 50 || mouseY > $('.tooltip').position().top + 100 || mouseY < $('.tooltip').position().top - 50) {
-				$('.tooltip').remove();
-				$('.tooltipTail').remove();
-				exists=false;
-			}
-		}
-	});
-	
-});
-</script>
-
 </html>
 
 
