@@ -1,12 +1,28 @@
-.timelineContainer {padding:25px 0px;display:flex;flex-wrap:nowrap;background-color:#fff}
+/* GOOGLE FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@400;700&display=swap");
+
+.timelineContainer {padding:25px 0px;display:flex;flex-wrap:nowrap;}
 .lineContainer {width:100px}
 .textContainer {width:calc(100%-100px)}
+
+.properTitle {text-align:center;font-size:36px;margin:10px 0px 0px 0px;font-family: 'Permanent Marker', cursive;color:#000}
+.properTitle.dark {color:#fff}
+.properSubtitle {text-align:center;font-size:20px;margin:0px;font-family: 'Roboto', sans-serif;font-weight:500}
+
+p {font-family: 'Roboto', sans-serif;font-weight:500}
 
 .topCircle {height:15px;width:15px;background:#111;margin:auto;border-radius:15px 15px 0px 0px}
 .bottomCircle {height:15px;width:15px;background:#111;margin:auto;border-radius:0px 0px 15px 15px}
 .timeline {height:calc(100% - 30px);width:5px;background:#111;margin:auto;}
 
+.topCircle.dark {background-color:#eee}
+.bottomCircle.dark {background-color:#eee}
+.timeline.dark {background-color:#eee}
 
-.textbox {width:100%}
-.textbox p {min-height:45px;margin:0px;margin-top:18px;position:relative;left:-35px;font-size:16px;}
-.textbox p .header {font-weight:bold;font-size:24px;margin-right:10px;}
+.textbox {width:100%;display:flex;padding-bottom:18px}
+.textbox.dark a {color:#99f}
+.textbox p {min-width:450px;min-height:45px;margin:0px;margin-top:18px;position:relative;font-size:16px;margin-right:10px;}
+.textbox p .header {font-weight:bold;font-size:24px;margin-right:10px;margin-bottom:15px}
+.textbox .inlineImg {position:inline;border:1px solid #c8ccd1;padding:5px;background:#f8f9fa;height:100%;}
+.textbox .inlineImg.dark {background:#222;border:1px solid #000}
+.textbox .inlineImg p {margin:0px;text-align:center;font-size:12px;min-height:auto;min-width:auto}

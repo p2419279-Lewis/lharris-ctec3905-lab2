@@ -1,11 +1,7 @@
-body {margin:0px;font-family:Arial;background:#eee}
-body.dark {background:#111}
-
-div.center {overflow:auto;background:#fff;padding:25px;box-sizing:border-box;min-width:600px;max-width:1080px;margin:auto}
-div.center.dark {background:#444;color:#fff}
+body .dark {margin:0px;font-family:Arial;background:#eee}
+.center {overflow:auto;background:#fff;padding:25px;box-sizing:border-box;min-width:600px;max-width:1080px;margin:auto}
 
 nav.ribbon {height:72px;width:100%;background:#fff;border-bottom:1px solid #ccc}
-nav.ribbon.dark {background:#333;border-bottom:1px solid #000}
 nav.ribbon li {background:#fff;display:inline;float:left;
 	text-decoration:none;padding:12px;margin:12px;border:1px solid #444;
 	border-radius:3px;transition:all 0.1s}
@@ -14,9 +10,9 @@ nav.ribbon a {color:#000}
 nav.ribbon a:hover {color:#fff}
 .right {float:right;}
 .hr {width:100%;border-top:1px solid #aaa;margin:50px auto;min-width:400px;}
+.footer {color:#666;font-size:12px;text-align:center;margin:50px 0px 5px 0px}
 
 .ribbonSwitch {float:right;padding:16px;}
-.ribbonSwitch.dark {color:#fff}
 .ribbonSwitch p {float:left;line-height:3px;margin-right:5px;}
 
 .switch {position: relative;display: inline-block;width: 60px;height: 34px;}
@@ -48,7 +44,3 @@ pre.code code::before {content:counter(listing)".  ";display:inline-block;}
 xmp.code {background:#333;padding:5px 15px;color:#fff;font-weight:bold;white-space:pre-wrap;}
 
 ul.wikipedia-overview-list li {padding-bottom:15px;}
-
-
-.footer {color:#666;font-size:12px;text-align:center;margin:50px 0px 5px 0px}
-.footer.dark {color:#111}
