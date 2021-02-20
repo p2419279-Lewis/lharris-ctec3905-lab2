@@ -1,5 +1,9 @@
+
+* {transition: all 0.2s}
+
 body {margin:0px;font-family:Arial;background:#eee}
 body.dark {background:#111}
+
 
 div.center {overflow:auto;background:#fff;padding:25px;box-sizing:border-box;min-width:600px;max-width:1080px;margin:auto}
 div.center.dark {background:#444;color:#fff}

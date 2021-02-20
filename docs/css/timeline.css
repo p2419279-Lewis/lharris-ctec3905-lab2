@@ -20,7 +20,8 @@ p {font-family: 'Roboto', sans-serif;font-weight:500}
 .timeline.dark {background-color:#eee}
 
 .textbox {width:100%;display:flex;padding-bottom:18px}
-.textbox.dark a {color:#99f}
+.textbox.dark a {color:#88f}
+.textbox.dark a:hover {color:#fff}
 .textbox p {min-width:450px;min-height:45px;margin:0px;margin-top:18px;position:relative;font-size:16px;margin-right:10px;}
 .textbox p .header {font-weight:bold;font-size:24px;margin-right:10px;margin-bottom:15px}
 .textbox .inlineImg {position:inline;border:1px solid #c8ccd1;padding:5px;background:#f8f9fa;height:100%;}
