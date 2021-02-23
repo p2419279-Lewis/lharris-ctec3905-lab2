@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>p2419279 File Directory - Github Pages</title>
+<link rel="stylesheet" href="css/main.css">
+<style>
+  .line {dispaly:block;width:100%;padding:3px;}
+</style>
+</head>
+<body>
+<nav class="ribbon">
+	<a href="https://github.com/p2419279-Lewis/lharris-html-pages"><li>Back to Github</li></a>
+</nav>
+<div class="center">
+  <h1>Quick filesize calculator</h1>
+  <p>Derive filesize from average bitrate * length:</p>
+  
+  <p><i>L</i> = length (seconds), <i>B</i> = average bitrate (kb/s), <i>F</i> = filesize (Mb)</p>
+  
+  <p><b><i>F</i> = <i>L</i> * <i>B</i> / 8000</b></p>
+  
+  <div class="line">Hours: <input type="text" id="inputHours"></div>
+  <div class="line">Minutes: <input type="text" id="inputMins"></div>
+  <div class="line">Seconds: <input type="text" id="inputSecs"></div>
+  <div class="line">Total length: <span id="totalTime">0</span> seconds</div>
+  <div class="line">Avg Bitrate (kb/s): <input type="text" id="bitrate"></div>
+  <div class="line">Total filesize: <span id="totalFilesize">0</span> MB</div>
+  
+  <p>Note: Not all file systems return filesize as Mb, instead MiB (Mebibyte, where 1MiB = 8388.61 KB) is used.</p>
+  
+  	<div class="footer">
+		Copyright Lewis Harris 2021
+	</div>
+</div>
+<script>
+
+  document.getElementById("inputHours").addEventListener("keyup", function() {updateTotalTime();});
+  document.getElementById("inputMins").addEventListener("keyup", function() {updateTotalTime();});
+  document.getElementById("inputSecs").addEventListener("keyup", function() {updateTotalTime();});
+  document.getElementById("bitrate").addEventListener("keyup", function() {updateTotalTime();});
+  
+  function updateTotalTime() {
+    let h = document.getElementById("inputHours").value;
+    let m = document.getElementById("inputMins").value;
+    let s = document.getElementById("inputSecs").value;
+    let b = document.getElementById("bitrate").value;
+    let totalTime = parseInt(h * 60 * 60) + parseInt(m * 60) + parseInt(s);
+    document.getElementById("totalTime").innerHTML = totalTime;
+    let totalFilesize = (parseInt(b) * totalTime) / 8000;
+    document.getElementById("totalFilesize").innerHTML = totalFilesize;
+  }
+  
+  updateTotalTime();
+  
+</script>
+</body>
+</html>
